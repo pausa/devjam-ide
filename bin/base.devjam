@@ -1,0 +1,26 @@
+#!/usr/bin/env fish
+
+set script (status -f)
+
+argparse -i 'i/interactive' -- $argv
+
+if set -q _flag_i
+    set mode "-it"
+else
+    set mode "-d"
+end
+
+cd (dirname $script)
+source base.env
+cd -
+test -f $script.env
+    and source $script.env
+
+set container (container_name $script)
+set image (image_name $script)
+
+set params (docker_params $container)
+set -a params (docker_extras $container)
+
+docker_rm $container
+docker run $mode $params $image:latest $argv

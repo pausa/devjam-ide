@@ -1,0 +1,6 @@
+#! /usr/bin/env fish
+
+set image (basename $argv[1])
+set uid (id -u)
+
+docker build $argv[1] -t $image:latest --build-arg UID=$uid
