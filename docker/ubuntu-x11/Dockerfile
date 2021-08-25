@@ -9,7 +9,8 @@ RUN id -nu $UID || useradd -ms /bin/bash dev -u $UID
 # Creates a folder structure that will be shared by other containers
 RUN mkdir /workspace \
  && chown $UID /workspace \
- && usermod -d /workspace/home -m $(id -nu $UID)
+ && usermod -d /workspace/home -m $(id -nu $UID) \
+ && usermod -aG video $(id -nu $UID)
 
 # Installing some dependencies and utilites, including libraries for 3d acceleration
 RUN apt-get update \
@@ -24,6 +25,7 @@ RUN apt-get update \
     libgl1-mesa-glx \
     mesa-utils \
     libgl1-mesa-dri \
+    libpulse0 \
  && apt-get clean
 
 
