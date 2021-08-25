@@ -4,5 +4,5 @@ fc-cache -v
 if count $argv
     firefox $argv
 else
-    firefox myiplocation.org
+    firefox --new-instance iplocation.com
 end
