@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+set url $argv[1]
+
+# this pattern is not safe, but it's an example
+if string match -r '\.devjam\.io' $url
+    firefox.devjam $url
+else
+    vivaldi $url
+end

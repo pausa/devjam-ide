@@ -1,0 +1,6 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Name=Url Dispatcher
+Exec=dispatch-url.devjam %u
+MimeType=x-scheme-handler/https
